@@ -139,23 +139,24 @@ class Wkhtml2pdf
         $this->config = $config;
         $this->view = $view;
 
-	$binpath = $this->config->get('Wkhtml2pdf::binpath');
+	//$binpath = $this->config->get('Wkhtml2pdf::binpath');
+        $binpath = env('NITMEDIA_BINPATH');
 
         if ($binpath)
         {
             if( $binpath[0] === '/')
             {
-                $this->setBinPath($this->config->get('Wkhtml2pdf::binpath'));
+                $this->setBinPath(env('NITMEDIA_BINPATH'));
             }
             else
             {
-                $this->setBinPath( realpath(__DIR__) . '/' . $this->config->get('Wkhtml2pdf::binpath'));
+                $this->setBinPath( realpath(__DIR__) . '/' . env('NITMEDIA_BINPATH'));
             }
         }
 
-        if ($this->config->get('Wkhtml2pdf::binfile'))
+        if (env('NITMEDIA_BINFILE'))
         {
-            $this->setBinFile($this->config->get('Wkhtml2pdf::binfile'));
+            $this->setBinFile(env('NITMEDIA_BINFILE'));
         }
 
         /* Check the binary executable exists */
