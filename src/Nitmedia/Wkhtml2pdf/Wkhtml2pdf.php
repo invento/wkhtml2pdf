@@ -805,7 +805,7 @@ class Wkhtml2pdf
 
         $command .= " --orientation " . escapeshellarg($this->getOrientation());
         $command .= " --page-size " . escapeshellarg($this->getPageSize());
-        $command .= ($this->getTOC()) ? " --toc" : "";
+        
         $command .= ($this->getGrayscale()) ? " --grayscale" : "";
         $command .= ($this->getTitle()) ? ' --title "' . escapeshellarg($this->getTitle()) . '"' : "";
         $command .= ($this->getCopies() > 1) ? " --copies " . escapeshellarg($this->getCopies()) : "";
@@ -814,6 +814,7 @@ class Wkhtml2pdf
         $command .= $this->_have_headerhtml ? " --margin-top 20 --header-html " . escapeshellarg($this->_headerfilename) : "";
         $command .= $this->_have_footerhtml ? " --margin-bottom 20 --footer-html " . escapeshellarg($this->_footerfilename) : "";
         $command .= ($this->getOptions()) ? " {$this->getOptions()} " : "";
+        $command .= ($this->getTOC()) ? " toc" : "";
 
         /*
          * ignore some errors with some urls as recommended with this wkhtmltopdf error message:
